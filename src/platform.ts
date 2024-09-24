@@ -7,12 +7,12 @@ import {
   PlatformConfig,
 } from "homebridge";
 
-import { PLATFORM_NAME, PLUGIN_NAME } from "./settings";
 import { Browser, tcp } from "dnssd";
-import { ValetudoTxtKey, ValetudoService } from "./types/discovery";
-import { ValetudoDevice } from "./valetudoDevice";
-import { HomebridgeContext } from "./types/homebridgeContext";
 import { milliseconds } from "./duration";
+import { PLATFORM_NAME, PLUGIN_NAME } from "./settings";
+import { ValetudoService, ValetudoTxtKey } from "./types/discovery";
+import { HomebridgeContext } from "./types/homebridgeContext";
+import { ValetudoDevice } from "./valetudoDevice";
 
 /**
  * ValetudoPlatformPlugin
@@ -77,7 +77,11 @@ export class ValetudoPlatformPlugin
   }
 
   private handleServiceUp(service: ValetudoService) {
-    const uuid = this.api.hap.uuid.generate(service.txt.id);
+    let name = service.txt.id;
+    if (this.config['displayName']) {
+      name = `${this.config['displayName']}`;
+    }
+    const uuid = this.api.hap.uuid.generate(name);
     const cachedAccessory = this.cachedAccessories.get(uuid);
     if (cachedAccessory) {
       this.logger.info(
@@ -89,8 +93,8 @@ export class ValetudoPlatformPlugin
       this.initedDevices.set(uuid, device);
     } else {
       // the accessory does not yet exist, so we need to create it
-      this.logger.info("Adding new accessory:", service.txt.id);
-      const accessory = new this.api.platformAccessory(service.txt.id, uuid);
+      this.logger.info("Adding new accessory:", name);
+      const accessory = new this.api.platformAccessory(name, uuid);
       const device = new ValetudoDevice(this, accessory, service);
       device.init();
       this.initedDevices.set(uuid, device);
