@@ -1,15 +1,15 @@
 {
   "displayName": "Homebridge Valetudo",
-  "name": "homebridge-valetudo",
-  "version": "1.0.3",
+  "name": "@thopedam/homebridge-valetudo",
+  "version": "1.1.0",
   "description": "A homebridge plugin to control Valetudo devices with zero config.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stevenguh/homebridge-valetudo.git"
+    "url": "https://github.com/thopedam/homebridge-valetudo.git"
   },
   "bugs": {
-    "url": "https://github.com/stevenguh/homebridge-valetudo/issues"
+    "url": "https://github.com/thopedam/homebridge-valetudo/issues"
   },
   "engines": {
     "node": ">=14.18.1",

@@ -6,4 +6,4 @@ export const PLATFORM_NAME = "Valetudo";
 /**
  * This must match the name of your plugin as defined the package.json
  */
-export const PLUGIN_NAME = "homebridge-valetudo";
+export const PLUGIN_NAME = "@thopedam/homebridge-valetudo";

@@ -1,10 +1,10 @@
 import { PlatformAccessory, Service } from "homebridge";
-import { BaseService } from "./base";
-import { ValetudoClient } from "../valetudoClient";
-import { ValetudoTxtKey } from "../types/discovery";
-import { HomebridgeContext } from "../types/homebridgeContext";
 import { cachePromise } from "../decorators";
 import { milliseconds } from "../duration";
+import { ValetudoTxtKey } from "../types/discovery";
+import { HomebridgeContext } from "../types/homebridgeContext";
+import { ValetudoClient } from "../valetudoClient";
+import { BaseService } from "./base";
 
 export class AccessoryInfoService extends BaseService {
   private readonly info: Service;
