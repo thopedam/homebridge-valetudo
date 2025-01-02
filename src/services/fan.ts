@@ -4,10 +4,11 @@ import {
   PlatformAccessory,
   Service,
 } from "homebridge";
-import { BaseService } from "./base";
-import { ValetudoClient } from "../valetudoClient";
+import { logMethod } from "../decorators";
+import { HomebridgeContext } from "../types/homebridgeContext";
 import {
   BasicControlAction,
+  Capability,
   PresetSelectionState,
   PresetSelectionStateIntensity,
   PresetSelectionType,
@@ -17,9 +18,8 @@ import {
   StatusState,
   isAttribute,
 } from "../types/valetudo";
-import { Capability } from "../types/valetudo";
-import { HomebridgeContext } from "../types/homebridgeContext";
-import { logMethod } from "../decorators";
+import { ValetudoClient } from "../valetudoClient";
+import { BaseService } from "./base";
 
 function getStatus(attributes: RobotAttribute[]) {
   const status = attributes.find(isAttribute(RobotAttributeClass.StatusState));
@@ -108,7 +108,7 @@ export class FanService extends BaseService {
   private async setActive(value: CharacteristicValue) {
     const active = value as boolean;
     await this.client.putBasicControlAction(
-      active ? BasicControlAction.Start : BasicControlAction.Pause
+      active ? BasicControlAction.Start : BasicControlAction.Stop
     );
   }
 
