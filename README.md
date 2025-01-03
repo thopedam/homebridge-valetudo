@@ -4,7 +4,7 @@ This is a Homebridge plugin that can be used to control your [Valetudo](https://
 
 Only the basic feature is supported:
 
-- Start and pause
+- Start and stop
 - Fan speed
 - Battery level
 - Speaker volume

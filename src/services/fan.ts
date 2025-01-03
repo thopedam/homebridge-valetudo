@@ -108,7 +108,7 @@ export class FanService extends BaseService {
   private async setActive(value: CharacteristicValue) {
     const active = value as boolean;
     await this.client.putBasicControlAction(
-      active ? BasicControlAction.Start : BasicControlAction.Stop
+      active ? BasicControlAction.Start : BasicControlAction.Home
     );
   }
 
